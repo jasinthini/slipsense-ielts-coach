@@ -1,0 +1,432 @@
+/* Band Buddy — Writing workspace */
+.writing-page {
+  --wp-navy: #102f4a;
+  --wp-muted: #4e6984;
+  --wp-line: #cbdceb;
+  background: #edf3f8;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-header {
+  min-height: 68px;
+  padding: 8px clamp(18px, 5vw, 72px);
+  background: #fff;
+  border-bottom: 1px solid #dce8f3;
+}
+
+.writing-page .wp-header img {
+  width: 138px;
+  height: 50px;
+}
+
+.writing-page .wp-back {
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-back:hover {
+  background: #edf5fc;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-main {
+  width: min(1280px, calc(100% - 48px));
+  padding-top: 24px;
+}
+
+.writing-page .wp-heading {
+  padding: clamp(18px, 3vw, 30px);
+  margin-bottom: 16px;
+  border: 1px solid var(--wp-line);
+  border-radius: 14px;
+  background: linear-gradient(110deg, #e2effa, #f7fbff);
+}
+
+.writing-page .wp-heading h1,
+.writing-page .wp-question-panel h2,
+.writing-page .wp-editor-heading h2 {
+  color: var(--wp-navy);
+  font-family: Georgia, 'Times New Roman', serif;
+  letter-spacing: normal;
+}
+
+.writing-page .wp-heading h1 {
+  font-size: clamp(29px, 3.6vw, 44px);
+  line-height: 1.12;
+}
+
+.writing-page .wp-heading > div > p:last-child,
+.writing-page .wp-editor-heading p,
+.writing-page .wp-editor-footer p,
+.writing-page .wp-bottom-bar > p {
+  color: var(--wp-muted);
+}
+
+.writing-page .wp-toolbar {
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-bottom: 16px;
+  border-color: var(--wp-line);
+}
+
+.writing-page .wp-toolbar .wp-text-button,
+.writing-page .wp-editor-footer .wp-text-button {
+  min-height: 36px;
+  padding: 7px 10px;
+  border-radius: 7px;
+  color: #245d90;
+}
+
+.writing-page .wp-text-button:hover:not(:disabled) {
+  background: #e7f2fc;
+}
+
+.writing-page .wp-timer > span,
+.writing-page .wp-mode,
+.writing-page .wp-word-count {
+  background: #e7f2fc;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-question-panel,
+.writing-page .wp-editor-panel {
+  border: 1px solid var(--wp-line);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px #102f4a08;
+}
+
+.writing-page .wp-question-panel {
+  padding: clamp(18px, 2.5vw, 28px);
+  background: linear-gradient(155deg, #f1f8ff, #fff);
+}
+
+.writing-page .wp-question-meta {
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.writing-page .wp-question-panel h2 {
+  margin-bottom: 12px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+}
+
+.writing-page .wp-prompt,
+.writing-page .wp-points {
+  color: #304e69;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.writing-page .wp-prompt {
+  white-space: pre-line;
+}
+
+.writing-page .wp-editor-heading,
+.writing-page .wp-editor-footer {
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #f3f8fd;
+}
+
+.writing-page .wp-editor-heading h2 {
+  font-size: 23px;
+}
+
+.writing-page .wp-editor-panel textarea {
+  min-height: 320px;
+  padding: 18px 22px;
+  color: var(--wp-navy);
+  line-height: 1.7;
+}
+
+.writing-page .wp-editor-panel textarea::placeholder {
+  color: #61788e;
+}
+
+.writing-page .wp-primary,
+.writing-page .wp-secondary {
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid #a6cbe7;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-primary {
+  background: linear-gradient(105deg, #e4f2ff, #b8dcfa);
+}
+
+.writing-page .wp-primary:hover:not(:disabled) {
+  background: #b8dcfa;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-secondary {
+  background: #fff;
+}
+
+.writing-page .wp-secondary:hover:not(:disabled) {
+  background: #e7f2fc;
+  color: var(--wp-navy);
+}
+
+.writing-page button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.writing-page :is(a, button):focus-visible {
+  outline: 2px solid #3978ad;
+  outline-offset: 3px;
+}
+
+.writing-page .wp-notice {
+  border-color: var(--wp-line);
+  background: #e1edf8;
+  color: var(--wp-navy);
+}
+
+.writing-page .wp-notice[role="alert"] {
+  border-color: #e8bac1;
+  background: #fff1f3;
+  color: #842439;
+}
+
+.writing-page .wp-footer {
+  border-top: 1px solid var(--wp-line);
+  background: transparent;
+  color: var(--wp-muted);
+}
+
+@media (max-width: 650px) {
+  .writing-page .wp-main {
+    width: calc(100% - 28px);
+    padding-top: 16px;
+  }
+
+  .writing-page .wp-header img {
+    width: 110px;
+    height: 44px;
+  }
+
+  .writing-page .wp-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .writing-page .wp-editor-panel textarea {
+    min-height: 260px;
+    padding: 16px;
+  }
+
+  .writing-page .wp-actions {
+    width: 100%;
+  }
+}
+
+
+
+.writing-page .wp-question-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.writing-page .wp-question-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+  padding: clamp(16px, 2vw, 24px);
+  border: 1px solid #cbdceb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 6px 20px #102f4a08;
+}
+
+.writing-page .wp-card-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e7f2fc;
+  color: #245d90;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.writing-page .wp-card-label {
+  margin: 0;
+  color: #4e6984;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.writing-page .wp-question-card h2 {
+  margin: 0;
+  color: #102f4a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 23px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.writing-page .wp-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 12px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 6px;
+  color: #4e6984;
+  font-size: 14px;
+}
+
+.writing-page .wp-card-start {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid #a6cbe7;
+  border-radius: 8px;
+  background: linear-gradient(105deg, #e4f2ff, #b8dcfa);
+  color: #102f4a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.writing-page .wp-card-start:hover {
+  background: #b8dcfa;
+  color: #102f4a;
+}
+
+@media (max-width: 1000px) {
+  .writing-page .wp-question-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .writing-page .wp-question-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+.wp-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 24px;
+}
+
+.wp-workspace > * {
+  min-width: 0;
+}
+
+.wp-editor-panel {
+  padding: clamp(16px, 3vw, 28px);
+  border: 1px solid #cddff0;
+  border-radius: 18px;
+  background: #fff;
+}
+
+#writing-answer {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 320px;
+  padding: 16px;
+  resize: vertical;
+  border: 1px solid #b7cee5;
+  border-radius: 12px;
+  background: #f7fbff;
+  color: #102e4a;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+#writing-answer:focus {
+  outline: 2px solid #82b8e3;
+  outline-offset: 2px;
+}
+
+.wp-timer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wp-timer button {
+  padding: 8px 14px;
+  border: 1px solid #aacdec;
+  border-radius: 9px;
+  background: #deefff;
+  color: #102e4a;
+  font: inherit;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .wp-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #writing-answer {
+    min-height: 240px;
+  }
+}
+
+
+/* Centre the writing page and leave space on both sides. */
+.writing-page .wp-main {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px clamp(16px, 4vw, 48px) 40px;
+}
+
+/* Keep links and timer together. */
+.writing-page .wp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: 16px 0;
+}
+
+.writing-page .wp-toolbar .wp-timer {
+  margin-inline-start: auto;
+}
+
+.writing-page .wp-timer > span {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Separate the task label from the question number. */
+.writing-page .wp-question-meta,
+.writing-page .wp-editor-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.writing-page .wp-word-count {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .writing-page .wp-toolbar .wp-timer {
+    flex-basis: 100%;
+    margin-inline-start: 0;
+  }
+}

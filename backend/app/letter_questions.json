@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Ask about an English course",
+    "prompt": "You are interested in joining an English course at a local learning centre. Write a letter to the course coordinator.",
+    "points": [
+      "Explain why you want to join the course.",
+      "Describe the English skills you want to improve.",
+      "Ask about the timetable and course fees."
+    ]
+  },
+  {
+    "title": "A damaged delivery",
+    "prompt": "You ordered a desk lamp online, but it arrived damaged. Write a letter to the retailer's customer service team.",
+    "points": [
+      "Give details of your order.",
+      "Describe the damage and explain how it affects your use of the lamp.",
+      "Say what you would like the retailer to do."
+    ]
+  },
+  {
+    "title": "Invite a friend to a festival",
+    "prompt": "A festival is taking place in your town next month. Write a letter to a friend inviting them to visit.",
+    "points": [
+      "Describe the festival.",
+      "Explain why you think your friend would enjoy it.",
+      "Suggest when to arrive and where to stay."
+    ]
+  },
+  {
+    "title": "Request a shift change",
+    "prompt": "You need to change one of your work shifts next week. Write a letter to your manager.",
+    "points": [
+      "Say which shift you need to change and why.",
+      "Suggest another shift you could work.",
+      "Explain how you will make sure your duties are covered."
+    ]
+  },
+  {
+    "title": "Thank a former teacher",
+    "prompt": "You have achieved a goal that one of your former teachers helped you work towards. Write a letter to the teacher.",
+    "points": [
+      "Tell the teacher what you have achieved.",
+      "Explain how their support helped you.",
+      "Describe what you plan to do next."
+    ]
+  },
+  {
+    "title": "Report a problem in your flat",
+    "prompt": "A window in your rented flat no longer closes properly. Write a letter to your landlord.",
+    "points": [
+      "Describe the problem and say when it started.",
+      "Explain how it is affecting you.",
+      "Ask for a repair and suggest a suitable time for someone to visit."
+    ]
+  },
+  {
+    "title": "Return a borrowed bicycle",
+    "prompt": "You borrowed a bicycle from a friend and cannot return it on the day you agreed. Write a letter to your friend.",
+    "points": [
+      "Apologise and explain why you cannot return the bicycle on time.",
+      "Suggest a new time and place to return it.",
+      "Ask whether your friend needs it sooner."
+    ]
+  },
+  {
+    "title": "Lost property on a train",
+    "prompt": "You left a bag on a train during a recent journey. Write a letter to the railway company's lost property office.",
+    "points": [
+      "Give details of the journey.",
+      "Describe the bag and its contents.",
+      "Explain how the office can contact you if the bag is found."
+    ]
+  },
+  {
+    "title": "Suggest improvements to a community centre",
+    "prompt": "You regularly use a community centre and have ideas about how it could better serve local residents. Write a letter to the centre manager.",
+    "points": [
+      "Explain how you currently use the centre.",
+      "Describe the improvements you would like to see.",
+      "Explain who would benefit and why."
+    ]
+  },
+  {
+    "title": "Help a friend prepare for a visit",
+    "prompt": "A friend is planning to visit your area for the first time and has asked for advice. Write a letter to your friend.",
+    "points": [
+      "Recommend a good time of year to visit.",
+      "Suggest two things to see or do.",
+      "Explain how to get around the area."
+    ]
+  }
+]

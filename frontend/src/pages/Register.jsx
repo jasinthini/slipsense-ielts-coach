@@ -1,260 +1,281 @@
-import { useState } from 'react';
-import '../App.css';
+import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import api from '../services/api';
+import './Login.css';
+
+const registerStyles = `
+  .bl-page.bl-register-page .bl-layout {
+    grid-template-columns: minmax(0, 460px) minmax(0, 420px);
+  }
+
+  .bl-page.bl-register-page .bl-main {
+    padding-top: 28px;
+    padding-bottom: 72px;
+  }
+
+  .bl-page.bl-register-page .bl-field {
+    margin-bottom: 10px;
+  }
+
+  .bl-page.bl-register-page .bl-intro {
+    margin-bottom: 16px;
+  }
+
+  .bl-page.bl-register-page .bl-register-help {
+    display: block;
+    margin-top: 4px;
+    color: var(--bl-muted);
+    font-size: 13px;
+  }
+
+  @media (max-width: 760px) {
+    .bl-page.bl-register-page .bl-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .bl-page.bl-register-page .bl-form-section {
+      grid-row: 1;
+    }
+  }
+`;
+
+function GoogleIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.12H3.05v2.59A10 10 0 0 0 12 22Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M6.4 13.92a6 6 0 0 1 0-3.84V7.49H3.05a10 10 0 0 0 0 9.02l3.35-2.59Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 5.96c1.47 0 2.79.5 3.83 1.51l2.87-2.87A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.95 5.49l3.35 2.59C7.19 7.72 9.4 5.96 12 5.96Z"
+      />
+    </svg>
+  );
+}
+
+function PasswordField({ id, name, label, placeholder, disabled, help }) {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div className="bl-field">
+      <label htmlFor={id}>{label}</label>
+
+      <div className="bl-password">
+        <input
+          id={id}
+          name={name}
+          type={visible ? 'text' : 'password'}
+          autoComplete="new-password"
+          placeholder={placeholder}
+          minLength={12}
+          maxLength={128}
+          aria-describedby={help ? `${id}-help` : undefined}
+          disabled={disabled}
+          required
+        />
+
+        <button
+          type="button"
+          aria-label={`${visible ? 'Hide' : 'Show'} ${label.toLowerCase()}`}
+          disabled={disabled}
+          onClick={() => setVisible((value) => !value)}
+        >
+          {visible ? 'Hide' : 'Show'}
+        </button>
+      </div>
+
+      {help && (
+        <small id={`${id}-help`} className="bl-register-help">
+          {help}
+        </small>
+      )}
+    </div>
+  );
+}
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
+  const submittingRef = useRef(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+  const [passwordFieldsKey, setPasswordFieldsKey] = useState(0);
 
-  function handleRegister(event) {
+  async function handleRegister(event) {
     event.preventDefault();
+    if (submittingRef.current) return;
+
+    setMessage('');
 
     const form = event.currentTarget;
+    const fullName = form.elements.fullName.value.trim();
+    const email = form.elements.email.value.trim();
     const password = form.elements.password.value;
     const confirmPassword = form.elements.confirmPassword.value;
+
+    if (!fullName) {
+      setMessage('Please enter your full name.');
+      return;
+    }
+
+    if (password.length < 12) {
+      setMessage('Please use a password with at least 12 characters.');
+      return;
+    }
 
     if (password !== confirmPassword) {
       setMessage('Passwords do not match. Please check both passwords.');
       return;
     }
 
-    setMessage(
-      'Registration is not available yet. Please try again later.'
-    );
+    submittingRef.current = true;
+    setIsSubmitting(true);
+
+    try {
+      await api.post('/auth/register', {
+        full_name: fullName,
+        email,
+        password,
+      });
+
+      form.reset();
+      setPasswordFieldsKey((value) => value + 1);
+      setMessage('Account created successfully! Click Log in to continue.');
+    } catch (error) {
+      const detail = error.response?.data?.detail;
+
+      if (typeof detail === 'string') {
+        setMessage(detail);
+      } else if (Array.isArray(detail)) {
+        setMessage('Please check your name, email and password.');
+      } else if (!error.response) {
+        setMessage('Could not confirm registration. Check your connection. If the email is already registered, try logging in.');
+      } else {
+        setMessage('Unable to create your account. Please try again later.');
+      }
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <div className="bb-page bb-login-page bb-register-page">
-      <header className="bb-header">
-        <nav className="bb-shell bb-navigation" aria-label="Main navigation">
-          <a className="bb-brand" href="/" aria-label="Band Buddy home">
-            <img src="/images/logo.png" alt="Band Buddy" />
-          </a>
+    <div className="bl-page bl-register-page">
+      <style>{registerStyles}</style>
 
-          <a className="bb-login" href="/">
-            ← Back to home
-          </a>
-        </nav>
+      <header className="bl-header">
+        <Link to="/" aria-label="Band Buddy home">
+          <img className="bl-logo" src="/images/logo.png" alt="Band Buddy" />
+        </Link>
+
+        <Link className="bl-back" to="/">← Back to home</Link>
       </header>
 
-      <main className="container bb-login-main">
-        <div
-          className="row g-0 overflow-hidden mx-auto"
-          style={{
-            maxWidth: '960px',
-            borderRadius: '20px',
-            background: '#ffffff',
-            boxShadow: '0 16px 50px #102b5010',
-          }}
-        >
-          <div
-            className="col-lg-6 d-flex flex-column justify-content-center"
-            style={{ background: '#dceeff' }}
-          >
+      <main className="bl-main">
+        <div className="bl-layout">
+          <figure className="bl-art-section">
             <img
+              className="bl-illustration"
               src="/images/register-study.png"
-              alt="Student preparing for IELTS with her laptop"
-              className="w-100 mb-4"
-              style={{
-                borderRadius: '16px',
-                height: 'auto',
-                display: 'block',
-              }}
+              alt="IELTS study illustration"
             />
+          </figure>
 
-            <h2
-              className="fw-bold"
-              style={{ color: '#102b50', fontSize: '28px' }}
-            >
-              Smarter practice.
-              <br />
-              <span style={{ color: '#0866ed' }}>
-                Brighter opportunities.
-              </span>
-            </h2>
+          <section className="bl-form-section" aria-labelledby="register-heading">
+            <h1 id="register-heading">Make room for progress.</h1>
+            <p className="bl-intro">Create your Band Buddy account.</p>
 
-            <p className="mb-0 mt-2" style={{ color: '#526c8f' }}>
-              Start your IELTS journey with practice, feedback and
-              steady progress.
-            </p>
-          </div>
-
-          <div className="col-lg-6">
-            <h1 className="fw-bold mb-2" style={{ color: '#102b50' }}>
-              Create your account
-            </h1>
-
-            <p className="mb-4" style={{ color: '#526c8f' }}>
-              Join Band Buddy and begin your IELTS practice.
-            </p>
-
-            <form onSubmit={handleRegister}>
-              <div className="mb-3">
-                <label
-                  htmlFor="register-name"
-                  className="form-label fw-semibold"
-                >
-                  Full name
-                </label>
+            <form onSubmit={handleRegister} aria-busy={isSubmitting}>
+              <div className="bl-field">
+                <label htmlFor="register-name">Full name</label>
                 <input
                   id="register-name"
                   name="fullName"
                   type="text"
                   autoComplete="name"
-                  className="form-control"
                   placeholder="Enter your full name"
                   maxLength={100}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
 
-              <div className="mb-3">
-                <label
-                  htmlFor="register-email"
-                  className="form-label fw-semibold"
-                >
-                  Email address
-                </label>
+              <div className="bl-field">
+                <label htmlFor="register-email">Email address</label>
                 <input
                   id="register-email"
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="form-control"
-                  placeholder="Enter your email"
+                  placeholder="Enter your email address"
+                  maxLength={254}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
 
-              <div className="mb-3">
-                <label
-                  htmlFor="register-password"
-                  className="form-label fw-semibold"
-                >
-                  Password
-                </label>
+              <PasswordField
+                key={`password-${passwordFieldsKey}`}
+                id="register-password"
+                name="password"
+                label="Password"
+                placeholder="Create a password"
+                help="Use at least 12 characters."
+                disabled={isSubmitting}
+              />
 
-                <div className="input-group">
-                  <input
-                    id="register-password"
-                    name="password"
-                    type={showPassword ? 'text' : 'password'}
-                    autoComplete="new-password"
-                    className="form-control"
-                    placeholder="Create a password"
-                    minLength={8}
-                    maxLength={128}
-                    aria-describedby="password-help"
-                    required
-                  />
+              <PasswordField
+                key={`confirm-${passwordFieldsKey}`}
+                id="register-confirm-password"
+                name="confirmPassword"
+                label="Confirm password"
+                placeholder="Confirm your password"
+                disabled={isSubmitting}
+              />
 
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary"
-                    aria-label={
-                      showPassword ? 'Hide passwords' : 'Show passwords'
-                    }
-                    aria-pressed={showPassword}
-                    onClick={() => setShowPassword(!showPassword)}
-                  >
-                    {showPassword ? 'Hide' : 'Show'}
-                  </button>
-                </div>
-
-                <small id="password-help" className="text-secondary">
-                  Use at least 12 characters.
-                </small>
-              </div>
-
-              <div className="mb-4">
-                <label
-                  htmlFor="register-confirm-password"
-                  className="form-label fw-semibold"
-                >
-                  Confirm password
-                </label>
-                <input
-                  id="register-confirm-password"
-                  name="confirmPassword"
-                  type={showPassword ? 'text' : 'password'}
-                  autoComplete="new-password"
-                  className="form-control"
-                  placeholder="Enter your password again"
-                  minLength={12}
-                  maxLength={128}
-                  required
-                />
-              </div>
-
-              <button type="submit" className="bb-btn w-100">
-                Create account →
+              <button className="bl-submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Creating account…' : 'Create account →'}
               </button>
             </form>
 
-            <div className="d-flex align-items-center gap-3 my-3">
-              <hr className="flex-grow-1 m-0" />
-              <span className="small text-secondary">or</span>
-              <hr className="flex-grow-1 m-0" />
-            </div>
+            <div className="bl-divider"><span>or</span></div>
 
             <button
+              className="bl-google"
               type="button"
-              className="btn w-100 d-flex align-items-center justify-content-center gap-3"
-              style={{
-                border: '1px solid #c9d9ed',
-                borderRadius: '9px',
-                color: '#102b50',
-                fontWeight: 600,
-              }}
+              disabled={isSubmitting}
               onClick={() =>
-                setMessage(
-                  'Google sign-in is not available yet. Please try again later.'
-                )
+                setMessage('Google sign-in is not available yet. Please register using your email.')
               }
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="#4285F4"
-                  d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36Z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.12H3.05v2.59A10 10 0 0 0 12 22Z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M6.4 13.92a6 6 0 0 1 0-3.84V7.49H3.05a10 10 0 0 0 0 9.02l3.35-2.59Z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 5.96c1.47 0 2.79.5 3.83 1.51l2.87-2.87A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.95 5.49l3.35 2.59C7.19 7.72 9.4 5.96 12 5.96Z"
-                />
-              </svg>
+              <GoogleIcon />
               Continue with Google
             </button>
 
-            {message && (
-              <p
-                role="status"
-                className="small mt-3 mb-0"
-                style={{ color: '#526c8f' }}
-              >
-                {message}
-              </p>
-            )}
+            {message && <p className="bl-message" role="status">{message}</p>}
 
-            <p className="text-center mt-4 mb-0">
-              Already have an account?{' '}
-              <a href="/login" className="fw-semibold">
-                Log in
-              </a>
+            <p className="bl-register">
+              Already have an account? <Link to="/login">Log in</Link>
             </p>
-          </div>
+          </section>
         </div>
+
+        <svg
+          className="bl-wave"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path fill="#DFEEFA" d="M0 32C250 8 355 92 610 75S1080 10 1440 42V100H0Z" />
+          <path fill="#C9E5FA" d="M0 70C240 35 400 106 675 91S1170 47 1440 62V100H0Z" />
+        </svg>
       </main>
     </div>
   );

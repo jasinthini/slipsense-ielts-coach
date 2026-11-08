@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Life skills at school",
+    "prompt": "Schools should teach students how to manage money and solve everyday problems alongside academic subjects. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Repairing household products",
+    "prompt": "Manufacturers should be required to make household products easy for customers to repair. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Cars in city centres",
+    "prompt": "Private cars should be banned from city centres during the busiest hours of the day. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Museums and free admission",
+    "prompt": "All publicly funded museums should offer free admission to visitors. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Food waste in supermarkets",
+    "prompt": "Supermarkets should be required to donate food that is still safe to eat but cannot be sold. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Advertising aimed at children",
+    "prompt": "Companies should not be allowed to advertise products directly to children under the age of twelve. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Public access to university research",
+    "prompt": "The results of publicly funded university research should be available online for anyone to read free of charge. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Shorter working weeks",
+    "prompt": "Employers should offer a four-day working week without reducing employees' pay. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Housing near public transport",
+    "prompt": "Local authorities should prioritise building new homes near public transport stations. To what extent do you agree or disagree?"
+  },
+  {
+    "title": "Learning an additional language",
+    "prompt": "All students should learn an additional language until they finish secondary school. To what extent do you agree or disagree?"
+  }
+]

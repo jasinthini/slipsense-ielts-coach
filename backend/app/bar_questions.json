@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "commuting",
+    "title": "How employees travelled to work",
+    "unit": "Share of employees (%)",
+    "labels": ["Car", "Bus", "Train", "Bicycle", "Walking"],
+    "first": {"year": "2015", "values": [46, 21, 15, 8, 10]},
+    "second": {"year": "2025", "values": [32, 24, 20, 13, 11]}
+  },
+  {
+    "slug": "library-visits",
+    "title": "Residents who visited a public library",
+    "unit": "Share of residents in each age group (%)",
+    "labels": ["16–24", "25–34", "35–44", "45–54", "55+"],
+    "first": {"year": "2016", "values": [42, 37, 45, 50, 56]},
+    "second": {"year": "2024", "values": [53, 44, 47, 46, 52]}
+  },
+  {
+    "slug": "home-energy",
+    "title": "Main sources of home heating",
+    "unit": "Share of households (%)",
+    "labels": ["Gas", "Electricity", "Oil", "Wood", "Other"],
+    "first": {"year": "2010", "values": [50, 20, 17, 8, 5]},
+    "second": {"year": "2025", "values": [35, 42, 10, 6, 7]}
+  },
+  {
+    "slug": "online-shopping",
+    "title": "Adults buying different products online",
+    "unit": "Share of adults (%)",
+    "labels": ["Clothing", "Books", "Groceries", "Electronics", "Furniture"],
+    "first": {"year": "2018", "values": [48, 35, 14, 39, 11]},
+    "second": {"year": "2024", "values": [66, 40, 42, 53, 23]}
+  },
+  {
+    "slug": "park-activities",
+    "title": "Main activities reported by park visitors",
+    "unit": "Share of visitors (%)",
+    "labels": ["Walking", "Running", "Cycling", "Picnics", "Other"],
+    "first": {"year": "2014", "values": [40, 15, 10, 28, 7]},
+    "second": {"year": "2024", "values": [37, 23, 18, 16, 6]}
+  },
+  {
+    "slug": "recycling",
+    "title": "Household recycling rates by material",
+    "unit": "Share of each material recycled (%)",
+    "labels": ["Paper", "Glass", "Metal", "Plastic", "Food waste"],
+    "first": {"year": "2015", "values": [62, 48, 40, 18, 12]},
+    "second": {"year": "2025", "values": [75, 63, 58, 34, 41]}
+  },
+  {
+    "slug": "school-clubs",
+    "title": "Student participation in after-school clubs",
+    "unit": "Share of students (%)",
+    "labels": ["Music", "Drama", "Sport", "Science", "Art"],
+    "first": {"year": "2017", "values": [29, 17, 48, 12, 24]},
+    "second": {"year": "2025", "values": [24, 21, 42, 31, 30]}
+  },
+  {
+    "slug": "water-use",
+    "title": "How households used water",
+    "unit": "Share of household water use (%)",
+    "labels": ["Bathing", "Laundry", "Toilets", "Gardens", "Other"],
+    "first": {"year": "2012", "values": [31, 22, 24, 17, 6]},
+    "second": {"year": "2024", "values": [34, 19, 21, 12, 14]}
+  },
+  {
+    "slug": "local-news",
+    "title": "Main sources of local news",
+    "unit": "Share of residents (%)",
+    "labels": ["TV", "Radio", "Newspaper", "News sites", "Social media"],
+    "first": {"year": "2014", "values": [36, 17, 29, 13, 5]},
+    "second": {"year": "2024", "values": [24, 10, 11, 28, 27]}
+  },
+  {
+    "slug": "volunteering",
+    "title": "Participation in community volunteering",
+    "unit": "Share of residents in each age group (%)",
+    "labels": ["18–24", "25–34", "35–44", "45–54", "55+"],
+    "first": {"year": "2015", "values": [18, 21, 24, 29, 34]},
+    "second": {"year": "2025", "values": [30, 28, 26, 27, 36]}
+  }
+]

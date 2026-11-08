@@ -765,3 +765,276 @@
     height: 58px;
   }
 }
+
+/* Animated login — register page is excluded */
+
+.bb-login-page:not(.bb-register-page) {
+  overflow-x: clip;
+  background: #edf4fd;
+}
+
+.bb-login-page:not(.bb-register-page) .bb-login-main {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  perspective: 1400px;
+  animation: none;
+}
+
+/* Main login card */
+
+.bb-login-page:not(.bb-register-page) .bb-login-main > .row {
+  max-width: 1100px !important;
+  border: 1px solid #dbe7f6;
+  border-radius: 24px !important;
+  background: #ffffff;
+  box-shadow: 0 20px 65px #102b5012 !important;
+}
+
+/* Form on the left */
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:last-child {
+  position: relative;
+  z-index: 2;
+  order: 1;
+  padding: 38px !important;
+  background: #ffffff;
+  animation: bb-login-form-in 650ms ease-out both;
+}
+
+/* Illustration panel on the right */
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child {
+  position: relative;
+  isolation: isolate;
+  order: 2;
+  overflow: hidden;
+  padding: 34px !important;
+  background: linear-gradient(
+    145deg,
+    #102b50 0%,
+    #174b82 55%,
+    #1769b4 100%
+  ) !important;
+  transform-origin: left center;
+  animation: bb-login-panel-in 1000ms cubic-bezier(.2,.7,.2,1) both;
+}
+
+/* Soft animated glow */
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child::before,
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child::after {
+  position: absolute;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  pointer-events: none;
+  content: '';
+}
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child::before {
+  top: -70px;
+  right: -80px;
+  background: radial-gradient(
+    circle,
+    #78bcff55,
+    #78bcff00 70%
+  );
+  animation: bb-login-glow 9s ease-in-out infinite alternate;
+}
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child::after {
+  bottom: -90px;
+  left: -80px;
+  background: radial-gradient(
+    circle,
+    #9dd5ff35,
+    #9dd5ff00 70%
+  );
+  animation: bb-login-glow 11s ease-in-out infinite alternate-reverse;
+}
+
+/* Keep the existing study image */
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child img {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  margin-bottom: 25px !important;
+  border: 1px solid #ffffff35;
+  border-radius: 17px !important;
+  object-fit: contain;
+  box-shadow: 0 15px 35px #071c3530;
+}
+
+/* Text contrast on the navy panel */
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child h2 {
+  color: #ffffff !important;
+  font-size: clamp(26px, 2.3vw, 32px) !important;
+  line-height: 1.35;
+  letter-spacing: -0.7px;
+}
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child h2 span {
+  color: #a8d5ff !important;
+}
+
+.bb-login-page:not(.bb-register-page)
+  .bb-login-main > .row > .col-lg-6:first-child p {
+  color: #d0e3f8 !important;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Form polish */
+
+.bb-login-page:not(.bb-register-page) .form-control {
+  min-height: 49px;
+  border: 1px solid #d5e2f3;
+  border-radius: 9px;
+  background-color: #f8fbff;
+  color: #183d68;
+  font-size: 15px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.bb-login-page:not(.bb-register-page) .form-control:focus {
+  border-color: #6ca8f5;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px #0866ed10;
+}
+
+.bb-login-page:not(.bb-register-page)
+  .input-group > .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bb-login-page:not(.bb-register-page)
+  .input-group > button {
+  border-color: #d5e2f3;
+  border-radius: 0 9px 9px 0;
+}
+
+.bb-login-page:not(.bb-register-page) .bb-btn {
+  min-height: 49px;
+  border: 1px solid #0866ed;
+  border-radius: 9px;
+  background: #0866ed;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.bb-login-page:not(.bb-register-page) .bb-btn:hover {
+  transform: translateY(-2px);
+  background: #0755c7;
+  color: #ffffff;
+  box-shadow: 0 8px 22px #0866ed25;
+}
+
+.bb-login-page:not(.bb-register-page) .bb-btn:disabled {
+  transform: none;
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* Entrance animations */
+
+@keyframes bb-login-form-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bb-login-panel-in {
+  from {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-12deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0);
+  }
+}
+
+@keyframes bb-login-glow {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-25px, 35px) scale(1.15);
+  }
+}
+
+/* Mobile: form first, illustration below */
+
+@media (max-width: 991px) {
+  .bb-login-page:not(.bb-register-page) .bb-login-main {
+    max-width: 620px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .bb-login-page:not(.bb-register-page)
+    .bb-login-main > .row > .col-lg-6:last-child,
+  .bb-login-page:not(.bb-register-page)
+    .bb-login-main > .row > .col-lg-6:first-child {
+    padding: 28px !important;
+  }
+
+  .bb-login-page:not(.bb-register-page)
+    .bb-login-main > .row > .col-lg-6:first-child img {
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 575px) {
+  .bb-login-page:not(.bb-register-page)
+    .bb-login-main > .row > .col-lg-6:last-child,
+  .bb-login-page:not(.bb-register-page)
+    .bb-login-main > .row > .col-lg-6:first-child {
+    padding: 23px !important;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .bb-login-page:not(.bb-register-page) .bb-login-main,
+  .bb-login-page:not(.bb-register-page) .bb-login-main *,
+  .bb-login-page:not(.bb-register-page) .bb-login-main *::before,
+  .bb-login-page:not(.bb-register-page) .bb-login-main *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .bb-login-page:not(.bb-register-page) .bb-btn:hover {
+    transform: none;
+  }
+}

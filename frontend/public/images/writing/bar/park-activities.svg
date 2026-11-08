@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420" role="img">
+<title>Main activities reported by park visitors</title>
+<rect width="760" height="420" fill="#ffffff"/>
+<g font-family="Arial, sans-serif" fill="#143454">
+<text x="38" y="35" font-size="23" text-anchor="start">Main activities reported by park visitors</text>
+<text x="38" y="63" font-size="15" text-anchor="start">Share of visitors (%)</text>
+<rect x="38" y="82" width="17" height="17" fill="#164878"/>
+<text x="63" y="96" font-size="14" text-anchor="start">2014</text>
+<rect x="144" y="82" width="17" height="17" fill="#78b9ee"/>
+<text x="169" y="96" font-size="14" text-anchor="start">2024</text>
+<line x1="60" y1="345.0" x2="724" y2="345.0" stroke="#cddcea"/>
+<text x="51" y="350.0" font-size="14" text-anchor="end">0</text>
+<line x1="60" y1="301.0" x2="724" y2="301.0" stroke="#cddcea"/>
+<text x="51" y="306.0" font-size="14" text-anchor="end">20</text>
+<line x1="60" y1="257.0" x2="724" y2="257.0" stroke="#cddcea"/>
+<text x="51" y="262.0" font-size="14" text-anchor="end">40</text>
+<line x1="60" y1="213.0" x2="724" y2="213.0" stroke="#cddcea"/>
+<text x="51" y="218.0" font-size="14" text-anchor="end">60</text>
+<line x1="60" y1="169.0" x2="724" y2="169.0" stroke="#cddcea"/>
+<text x="51" y="174.0" font-size="14" text-anchor="end">80</text>
+<line x1="60" y1="125.0" x2="724" y2="125.0" stroke="#cddcea"/>
+<text x="51" y="130.0" font-size="14" text-anchor="end">100</text>
+<text x="126" y="373" font-size="14" text-anchor="middle">Walking</text>
+<rect x="89" y="257.0" width="33" height="88.0" fill="#164878"/>
+<text x="105.5" y="251.0" font-size="13" text-anchor="middle">40</text>
+<rect x="130" y="263.6" width="33" height="81.4" fill="#78b9ee"/>
+<text x="146.5" y="257.6" font-size="13" text-anchor="middle">37</text>
+<text x="258" y="373" font-size="14" text-anchor="middle">Running</text>
+<rect x="221" y="312.0" width="33" height="33.0" fill="#164878"/>
+<text x="237.5" y="306.0" font-size="13" text-anchor="middle">15</text>
+<rect x="262" y="294.4" width="33" height="50.6" fill="#78b9ee"/>
+<text x="278.5" y="288.4" font-size="13" text-anchor="middle">23</text>
+<text x="390" y="373" font-size="14" text-anchor="middle">Cycling</text>
+<rect x="353" y="323.0" width="33" height="22.0" fill="#164878"/>
+<text x="369.5" y="317.0" font-size="13" text-anchor="middle">10</text>
+<rect x="394" y="305.4" width="33" height="39.6" fill="#78b9ee"/>
+<text x="410.5" y="299.4" font-size="13" text-anchor="middle">18</text>
+<text x="522" y="373" font-size="14" text-anchor="middle">Picnics</text>
+<rect x="485" y="283.4" width="33" height="61.6" fill="#164878"/>
+<text x="501.5" y="277.4" font-size="13" text-anchor="middle">28</text>
+<rect x="526" y="309.8" width="33" height="35.2" fill="#78b9ee"/>
+<text x="542.5" y="303.8" font-size="13" text-anchor="middle">16</text>
+<text x="654" y="373" font-size="14" text-anchor="middle">Other</text>
+<rect x="617" y="329.6" width="33" height="15.4" fill="#164878"/>
+<text x="633.5" y="323.6" font-size="13" text-anchor="middle">7</text>
+<rect x="658" y="331.8" width="33" height="13.2" fill="#78b9ee"/>
+<text x="674.5" y="325.8" font-size="13" text-anchor="middle">6</text>
+<text x="38" y="405" font-size="12" text-anchor="start">Band Buddy practice · Fictional data</text>
+</g></svg>

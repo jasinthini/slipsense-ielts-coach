@@ -1,228 +1,190 @@
-import { useState } from 'react';
-import '../App.css';
+import { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import api from '../services/api';
+import './Login.css';
+
+function GoogleIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.12H3.05v2.59A10 10 0 0 0 12 22Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M6.4 13.92a6 6 0 0 1 0-3.84V7.49H3.05a10 10 0 0 0 0 9.02l3.35-2.59Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 5.96c1.47 0 2.79.5 3.83 1.51l2.87-2.87A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.95 5.49l3.35 2.59C7.19 7.72 9.4 5.96 12 5.96Z"
+      />
+    </svg>
+  );
+}
 
 export default function Login() {
+  const navigate = useNavigate();
+  const submittingRef = useRef(false);
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleLogin(event) {
+  async function handleLogin(event) {
     event.preventDefault();
-    setMessage('Sign-in is not available yet. Please try again later.');
+    if (submittingRef.current) return;
+
+    const form = event.currentTarget;
+    const email = form.elements.email.value.trim();
+    const password = form.elements.password.value;
+
+    setMessage('');
+    submittingRef.current = true;
+    setIsSubmitting(true);
+
+    try {
+      const { data } = await api.post('/auth/login', { email, password });
+      const token = data.access_token;
+
+      if (typeof token !== 'string' || !token) {
+        setMessage('Unable to complete login. Please try again.');
+        return;
+      }
+
+      sessionStorage.setItem('band_buddy_access_token', token);
+      form.reset();
+      setShowPassword(false);
+
+      navigate(data.user?.role === 'admin' ? '/admin' : '/dashboard', {
+        replace: true,
+      });
+    } catch (error) {
+      if (error.response?.status === 401) {
+        setMessage('Incorrect email or password.');
+      } else if (error.response?.status === 422) {
+        setMessage('Please check your email and password.');
+      } else {
+        setMessage('Unable to complete login. Please try again.');
+      }
+    } finally {
+      submittingRef.current = false;
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <div className="bb-page bb-login-page">
-      <header className="bb-header">
-        <nav className="bb-shell bb-navigation" aria-label="Main navigation">
-          <a className="bb-brand" href="/" aria-label="Band Buddy home">
-            <img src="/images/logo.png" alt="Band Buddy" />
-          </a>
+    <div className="bl-page">
+      <header className="bl-header">
+        <Link to="/" aria-label="Band Buddy home">
+          <img className="bl-logo" src="/images/logo.png" alt="Band Buddy" />
+        </Link>
 
-          <a className="bb-login" href="/">
-            ← Back to home
-          </a>
-        </nav>
+        <Link className="bl-back" to="/">← Back to home</Link>
       </header>
 
-      <main className="container bb-login-main">
-        <div
-          className="row g-0 overflow-hidden mx-auto"
-          style={{
-            maxWidth: '1100px',
-            borderRadius: '24px',
-            background: '#ffffff',
-            boxShadow: '0 16px 50px #102b5010',
-          }}
-        >
-          <div
-            className="col-lg-6 d-flex flex-column justify-content-center p-4 p-md-5"
-            style={{ background: '#dceeff' }}
-          >
-            <img
-              src="/images/login-study.png"
-              alt="Student practising IELTS on her laptop"
-              className="w-100 mb-4"
-              style={{
-              borderRadius: '16px',
-              height: 'auto',
-              display: 'block',
-}}
-            />
+      <main className="bl-main">
+        <div className="bl-layout">
+          <section className="bl-form-section" aria-labelledby="login-heading">
+            <h1 id="login-heading">Welcome back.</h1>
+            <p className="bl-intro">A little practice. A little progress.</p>
 
-            <h2
-              className="fw-bold"
-              style={{ color: '#102b50', fontSize: '30px' }}
-            >
-              Better English.
-              <br />
-              <span style={{ color: '#0866ed' }}>
-                Brighter opportunities.
-              </span>
-            </h2>
-
-            <p className="mb-0 mt-2" style={{ color: '#526c8f' }}>
-              Practise at your own pace and learn from every answer.
-            </p>
-          </div>
-
-          <div className="col-lg-6 p-4 p-md-5">
-            <h1
-              className="fw-bold mb-2"
-              style={{ color: '#102b50', fontSize: '34px' }}
-            >
-              Welcome back
-            </h1>
-
-            <p className="mb-4" style={{ color: '#526c8f' }}>
-              Log in to continue your IELTS journey with Band Buddy.
-            </p>
-
-            <form onSubmit={handleLogin}>
-              <div className="mb-3">
-                <label
-                  htmlFor="login-email"
-                  className="form-label fw-semibold"
-                >
-                  Email address
-                </label>
-
+            <form onSubmit={handleLogin} aria-busy={isSubmitting}>
+              <div className="bl-field">
+                <label htmlFor="login-email">Email address</label>
                 <input
                   id="login-email"
                   name="email"
                   type="email"
                   autoComplete="username"
-                  className="form-control py-3"
-                  placeholder="Enter your email"
+                  placeholder="Enter your email address"
+                  maxLength={254}
+                  disabled={isSubmitting}
                   required
                 />
               </div>
 
-              <div className="mb-2">
-                <label
-                  htmlFor="login-password"
-                  className="form-label fw-semibold"
-                >
-                  Password
-                </label>
-
-                <div className="input-group">
+              <div className="bl-field">
+                <label htmlFor="login-password">Password</label>
+                <div className="bl-password">
                   <input
                     id="login-password"
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
-                    className="form-control py-3"
                     placeholder="Enter your password"
+                    maxLength={128}
+                    disabled={isSubmitting}
                     required
                   />
-
                   <button
-                    className="btn btn-outline-secondary"
                     type="button"
-                    aria-label={
-                      showPassword ? 'Hide password' : 'Show password'
-                    }
-                    aria-pressed={showPassword}
-                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    disabled={isSubmitting}
+                    onClick={() => setShowPassword((value) => !value)}
                   >
                     {showPassword ? 'Hide' : 'Show'}
                   </button>
                 </div>
               </div>
 
-              <div className="text-end mb-4">
+              <div className="bl-forgot">
                 <button
                   type="button"
-                  className="btn btn-link px-0"
-                  onClick={() =>
-                    setMessage(
-                      'Password reset is not available yet. Please try again later.'
-                    )
-                  }
+                  disabled={isSubmitting}
+                  onClick={() => setMessage('Password reset is not available yet.')}
                 >
                   Forgot password?
                 </button>
               </div>
 
-              <button
-                type="submit"
-                className="bb-btn w-100"
-              >
-                Log in →
+              <button className="bl-submit" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Logging in…' : 'Log in →'}
               </button>
             </form>
 
-            <div className="d-flex align-items-center gap-3 my-4">
-              <hr className="flex-grow-1 m-0" />
-              <span style={{ color: '#526c8f', fontSize: '14px' }}>
-                or
-              </span>
-              <hr className="flex-grow-1 m-0" />
-            </div>
+            <div className="bl-divider"><span>or</span></div>
 
             <button
+              className="bl-google"
               type="button"
-              className="btn w-100 py-3 d-flex align-items-center justify-content-center gap-3"
-              style={{
-                border: '1px solid #c9d9ed',
-                borderRadius: '9px',
-                color: '#102b50',
-                fontWeight: 600,
-              }}
+              disabled={isSubmitting}
               onClick={() =>
-                setMessage(
-                  'Google sign-in is not available yet. Please try again later.'
-                )
+                setMessage('Google sign-in is not available yet. Please use your email and Band Buddy password.')
               }
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="#4285F4"
-                  d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36Z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.81-1.76-5.6-4.12H3.05v2.59A10 10 0 0 0 12 22Z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M6.4 13.92a6 6 0 0 1 0-3.84V7.49H3.05a10 10 0 0 0 0 9.02l3.35-2.59Z"
-                />
-                <path
-                  fill="#EA4335"
-                  d="M12 5.96c1.47 0 2.79.5 3.83 1.51l2.87-2.87A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.95 5.49l3.35 2.59C7.19 7.72 9.4 5.96 12 5.96Z"
-                />
-              </svg>
+              <GoogleIcon />
               Continue with Google
             </button>
 
-            {message && (
-              <p
-                role="status"
-                className="mt-3 mb-0 small"
-                style={{ color: '#526c8f' }}
-              >
-                {message}
-              </p>
-            )}
+            {message && <p className="bl-message" role="status">{message}</p>}
 
-            <p className="text-center mt-4 mb-0">
-              Don’t have an account?{' '}
-              <a
-                href="/register"
-                className="fw-semibold"
-                style={{ color: '#0866ed' }}
-              >
-                Register
-              </a>
+            <p className="bl-register">
+              New to Band Buddy? <Link to="/register">Create an account</Link>
             </p>
-          </div>
+          </section>
+
+          <figure className="bl-art-section">
+            <img
+              className="bl-illustration"
+              src="/images/login-student.png"
+              alt="Student in a light blue cardigan holding a laptop"
+            />
+            <figcaption>Your next step starts here.</figcaption>
+          </figure>
         </div>
+
+        <svg
+          className="bl-wave"
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path fill="#DFEEFA" d="M0 32C250 8 355 92 610 75S1080 10 1440 42V100H0Z" />
+          <path fill="#C9E5FA" d="M0 70C240 35 400 106 675 91S1170 47 1440 62V100H0Z" />
+        </svg>
       </main>
     </div>
   );

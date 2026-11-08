@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480">
+<title>How students travelled to university</title>
+<rect width="760" height="480" fill="#fff"/>
+<g font-family="Arial, sans-serif" fill="#143454">
+<text x="380" y="32" font-size="23" text-anchor="middle">How students travelled to university</text>
+<text x="380" y="57" font-size="15" text-anchor="middle">Percentage share (%)</text>
+<text x="210" y="82" font-size="16" text-anchor="middle">2008</text>
+<path d="M 210 185 L 210.00 95.00 A 90 90 0 0 1 285.99 233.22 Z" fill="#12385e" stroke="#fff" stroke-width="2"/>
+<path d="M 210 185 L 285.99 233.22 A 90 90 0 0 1 140.65 242.37 Z" fill="#23639b" stroke="#fff" stroke-width="2"/>
+<path d="M 210 185 L 140.65 242.37 A 90 90 0 0 1 124.40 157.19 Z" fill="#418cbe" stroke="#fff" stroke-width="2"/>
+<path d="M 210 185 L 124.40 157.19 A 90 90 0 0 1 148.39 119.39 Z" fill="#75b4de" stroke="#fff" stroke-width="2"/>
+<path d="M 210 185 L 148.39 119.39 A 90 90 0 0 1 210.00 95.00 Z" fill="#b5daef" stroke="#fff" stroke-width="2"/>
+<text x="550" y="82" font-size="16" text-anchor="middle">2023</text>
+<path d="M 550 185 L 550.00 95.00 A 90 90 0 0 1 633.68 218.13 Z" fill="#12385e" stroke="#fff" stroke-width="2"/>
+<path d="M 550 185 L 633.68 218.13 A 90 90 0 0 1 550.00 275.00 Z" fill="#23639b" stroke="#fff" stroke-width="2"/>
+<path d="M 550 185 L 550.00 275.00 A 90 90 0 0 1 461.59 201.86 Z" fill="#418cbe" stroke="#fff" stroke-width="2"/>
+<path d="M 550 185 L 461.59 201.86 A 90 90 0 0 1 488.39 119.39 Z" fill="#75b4de" stroke="#fff" stroke-width="2"/>
+<path d="M 550 185 L 488.39 119.39 A 90 90 0 0 1 550.00 95.00 Z" fill="#b5daef" stroke="#fff" stroke-width="2"/>
+<text x="540" y="304" font-size="15" text-anchor="end">2008</text>
+<text x="650" y="304" font-size="15" text-anchor="end">2023</text>
+<rect x="85" y="316" width="15" height="15" fill="#12385e"/>
+<text x="110" y="329" font-size="15" text-anchor="start">Bus</text>
+<text x="540" y="329" font-size="15" text-anchor="end">34%</text>
+<text x="650" y="329" font-size="15" text-anchor="end">31%</text>
+<rect x="85" y="341" width="15" height="15" fill="#23639b"/>
+<text x="110" y="354" font-size="15" text-anchor="start">Car</text>
+<text x="540" y="354" font-size="15" text-anchor="end">30%</text>
+<text x="650" y="354" font-size="15" text-anchor="end">19%</text>
+<rect x="85" y="366" width="15" height="15" fill="#418cbe"/>
+<text x="110" y="379" font-size="15" text-anchor="start">Train</text>
+<text x="540" y="379" font-size="15" text-anchor="end">16%</text>
+<text x="650" y="379" font-size="15" text-anchor="end">22%</text>
+<rect x="85" y="391" width="15" height="15" fill="#75b4de"/>
+<text x="110" y="404" font-size="15" text-anchor="start">Bicycle</text>
+<text x="540" y="404" font-size="15" text-anchor="end">8%</text>
+<text x="650" y="404" font-size="15" text-anchor="end">16%</text>
+<rect x="85" y="416" width="15" height="15" fill="#b5daef"/>
+<text x="110" y="429" font-size="15" text-anchor="start">Walking</text>
+<text x="540" y="429" font-size="15" text-anchor="end">12%</text>
+<text x="650" y="429" font-size="15" text-anchor="end">12%</text>
+<text x="380" y="463" font-size="12" text-anchor="middle">Band Buddy practice · Fictional data</text>
+</g></svg>
