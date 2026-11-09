@@ -38,6 +38,7 @@ const categories = [
     subtitle: 'TASK 1 · ACADEMIC',
     description: 'Compare categories and important figures.',
     icon: 'bar',
+    available: true,
   },
   {
     id: 'line',
@@ -64,6 +65,7 @@ const categories = [
     subtitle: 'TASK 1 · ACADEMIC',
     description: 'Describe locations and changes to a place.',
     icon: 'map',
+    available: true,
   },
   {
     id: 'process',
@@ -72,6 +74,7 @@ const categories = [
     subtitle: 'TASK 1 · ACADEMIC',
     description: 'Explain stages in a process or cycle.',
     icon: 'process',
+    available: true,
   },
   {
     id: 'table',
@@ -80,6 +83,7 @@ const categories = [
     subtitle: 'TASK 1 · ACADEMIC',
     description: 'Summarise data and make comparisons.',
     icon: 'table',
+    available: true,
   },
 ];
 

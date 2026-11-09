@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 390">
+<title>Rainwater collection</title>
+<rect width="760" height="390" fill="#fff"/>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#27639b"/></marker></defs>
+<g font-family="Arial, sans-serif" fill="#143454" text-anchor="middle">
+<text x="380" y="39" font-size="25">Rainwater collection</text>
+<path d="M232 130 H268" fill="none" stroke="#27639b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M482 130 H518" fill="none" stroke="#27639b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M628 184 V230" fill="none" stroke="#27639b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M524 290 H488" fill="none" stroke="#27639b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M274 290 H238" fill="none" stroke="#27639b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="28" y="80" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="128" y="107" font-size="14" font-weight="bold">Stage 1</text>
+<text x="128" y="130" font-size="14">Rain falls onto the</text>
+<text x="128" y="147" font-size="14">roof</text>
+<rect x="278" y="80" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="378" y="107" font-size="14" font-weight="bold">Stage 2</text>
+<text x="378" y="130" font-size="14">Gutters collect runoff</text>
+<rect x="528" y="80" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="628" y="107" font-size="14" font-weight="bold">Stage 3</text>
+<text x="628" y="130" font-size="14">A screen removes leaves</text>
+<rect x="528" y="240" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="628" y="267" font-size="14" font-weight="bold">Stage 4</text>
+<text x="628" y="290" font-size="14">A pipe carries water to</text>
+<text x="628" y="307" font-size="14">the tank</text>
+<rect x="278" y="240" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="378" y="267" font-size="14" font-weight="bold">Stage 5</text>
+<text x="378" y="290" font-size="14">The tank stores the</text>
+<text x="378" y="307" font-size="14">water</text>
+<rect x="28" y="240" width="200" height="100" rx="12" fill="#e6f2fd" stroke="#93b8d7"/>
+<text x="128" y="267" font-size="14" font-weight="bold">Stage 6</text>
+<text x="128" y="290" font-size="14">An outdoor tap supplies</text>
+<text x="128" y="307" font-size="14">the garden</text>
+<text x="380" y="370" font-size="13">Band Buddy practice</text>
+</g></svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 338">
+<title>Annual bus journeys</title>
+<rect width="760" height="338" fill="#ffffff"/>
+<g font-family="Arial, sans-serif">
+<text x="30" y="37" fill="#143454" font-size="25" text-anchor="start">Annual bus journeys</text>
+<text x="30" y="65" fill="#143454" font-size="15" text-anchor="start">Journeys per year (thousands)</text>
+<rect x="30" y="90" width="700" height="42" rx="6" fill="#174774"/>
+<text x="44" y="117" fill="#ffffff" font-size="17" text-anchor="start">Town</text>
+<text x="321.6666666666667" y="117" fill="#ffffff" font-size="17" text-anchor="middle">2012</text>
+<text x="485.0" y="117" fill="#ffffff" font-size="17" text-anchor="middle">2018</text>
+<text x="648.3333333333334" y="117" fill="#ffffff" font-size="17" text-anchor="middle">2024</text>
+<rect x="30" y="132" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="159" fill="#143454" font-size="17" text-anchor="start">Brookfield</text>
+<text x="321.6666666666667" y="159" fill="#143454" font-size="17" text-anchor="middle">320</text>
+<text x="485.0" y="159" fill="#143454" font-size="17" text-anchor="middle">405</text>
+<text x="648.3333333333334" y="159" fill="#143454" font-size="17" text-anchor="middle">480</text>
+<rect x="30" y="174" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="201" fill="#143454" font-size="17" text-anchor="start">Eastmere</text>
+<text x="321.6666666666667" y="201" fill="#143454" font-size="17" text-anchor="middle">510</text>
+<text x="485.0" y="201" fill="#143454" font-size="17" text-anchor="middle">495</text>
+<text x="648.3333333333334" y="201" fill="#143454" font-size="17" text-anchor="middle">460</text>
+<rect x="30" y="216" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="243" fill="#143454" font-size="17" text-anchor="start">Westford</text>
+<text x="321.6666666666667" y="243" fill="#143454" font-size="17" text-anchor="middle">285</text>
+<text x="485.0" y="243" fill="#143454" font-size="17" text-anchor="middle">330</text>
+<text x="648.3333333333334" y="243" fill="#143454" font-size="17" text-anchor="middle">390</text>
+<rect x="30" y="258" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="285" fill="#143454" font-size="17" text-anchor="start">Hilltown</text>
+<text x="321.6666666666667" y="285" fill="#143454" font-size="17" text-anchor="middle">190</text>
+<text x="485.0" y="285" fill="#143454" font-size="17" text-anchor="middle">280</text>
+<text x="648.3333333333334" y="285" fill="#143454" font-size="17" text-anchor="middle">350</text>
+<text x="30" y="323" fill="#143454" font-size="13" text-anchor="start">Band Buddy practice · Fictional data</text>
+</g></svg>

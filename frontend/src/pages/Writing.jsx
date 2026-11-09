@@ -42,6 +42,24 @@ const categories = {
   minutes: 20,
   visualLabel: 'Pie chart',
 },
+map: {
+  label: 'Academic · Task 1 · Maps',
+  task: 'Task 1 · Maps',
+  minutes: 20,
+  visualLabel: 'Maps',
+},
+process: {
+  label: 'Academic · Task 1 · Process diagram',
+  task: 'Task 1 · Process diagram',
+  minutes: 20,
+  visualLabel: 'Process diagram',
+},
+table: {
+  label: 'Academic · Task 1 · Table',
+  task: 'Task 1 · Table',
+  minutes: 20,
+  visualLabel: 'Table',
+},
 };
 
 function questionUrl(category, questionId) {

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 338">
+<title>Monthly commuting costs</title>
+<rect width="760" height="338" fill="#ffffff"/>
+<g font-family="Arial, sans-serif">
+<text x="30" y="37" fill="#143454" font-size="25" text-anchor="start">Monthly commuting costs</text>
+<text x="30" y="65" fill="#143454" font-size="15" text-anchor="start">Average cost per person in 2025 ($)</text>
+<rect x="30" y="90" width="700" height="42" rx="6" fill="#174774"/>
+<text x="44" y="117" fill="#ffffff" font-size="17" text-anchor="start">City</text>
+<text x="321.6666666666667" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Bus</text>
+<text x="485.0" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Train</text>
+<text x="648.3333333333334" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Car</text>
+<rect x="30" y="132" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="159" fill="#143454" font-size="17" text-anchor="start">Northport</text>
+<text x="321.6666666666667" y="159" fill="#143454" font-size="17" text-anchor="middle">48</text>
+<text x="485.0" y="159" fill="#143454" font-size="17" text-anchor="middle">72</text>
+<text x="648.3333333333334" y="159" fill="#143454" font-size="17" text-anchor="middle">165</text>
+<rect x="30" y="174" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="201" fill="#143454" font-size="17" text-anchor="start">Lakeview</text>
+<text x="321.6666666666667" y="201" fill="#143454" font-size="17" text-anchor="middle">55</text>
+<text x="485.0" y="201" fill="#143454" font-size="17" text-anchor="middle">60</text>
+<text x="648.3333333333334" y="201" fill="#143454" font-size="17" text-anchor="middle">140</text>
+<rect x="30" y="216" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="243" fill="#143454" font-size="17" text-anchor="start">Riverton</text>
+<text x="321.6666666666667" y="243" fill="#143454" font-size="17" text-anchor="middle">42</text>
+<text x="485.0" y="243" fill="#143454" font-size="17" text-anchor="middle">67</text>
+<text x="648.3333333333334" y="243" fill="#143454" font-size="17" text-anchor="middle">155</text>
+<rect x="30" y="258" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="285" fill="#143454" font-size="17" text-anchor="start">Greendale</text>
+<text x="321.6666666666667" y="285" fill="#143454" font-size="17" text-anchor="middle">50</text>
+<text x="485.0" y="285" fill="#143454" font-size="17" text-anchor="middle">80</text>
+<text x="648.3333333333334" y="285" fill="#143454" font-size="17" text-anchor="middle">175</text>
+<text x="30" y="323" fill="#143454" font-size="13" text-anchor="start">Band Buddy practice · Fictional data</text>
+</g></svg>

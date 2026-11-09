@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 338">
+<title>Museum attendance by season</title>
+<rect width="760" height="338" fill="#ffffff"/>
+<g font-family="Arial, sans-serif">
+<text x="30" y="37" fill="#143454" font-size="25" text-anchor="start">Museum attendance by season</text>
+<text x="30" y="65" fill="#143454" font-size="15" text-anchor="start">Visitors in 2023 (thousands)</text>
+<rect x="30" y="90" width="700" height="42" rx="6" fill="#174774"/>
+<text x="44" y="117" fill="#ffffff" font-size="17" text-anchor="start">Museum</text>
+<text x="301.25" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Spring</text>
+<text x="423.75" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Summer</text>
+<text x="546.25" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Autumn</text>
+<text x="668.75" y="117" fill="#ffffff" font-size="17" text-anchor="middle">Winter</text>
+<rect x="30" y="132" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="159" fill="#143454" font-size="17" text-anchor="start">History</text>
+<text x="301.25" y="159" fill="#143454" font-size="17" text-anchor="middle">42</text>
+<text x="423.75" y="159" fill="#143454" font-size="17" text-anchor="middle">68</text>
+<text x="546.25" y="159" fill="#143454" font-size="17" text-anchor="middle">49</text>
+<text x="668.75" y="159" fill="#143454" font-size="17" text-anchor="middle">25</text>
+<rect x="30" y="174" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="201" fill="#143454" font-size="17" text-anchor="start">Science</text>
+<text x="301.25" y="201" fill="#143454" font-size="17" text-anchor="middle">54</text>
+<text x="423.75" y="201" fill="#143454" font-size="17" text-anchor="middle">72</text>
+<text x="546.25" y="201" fill="#143454" font-size="17" text-anchor="middle">58</text>
+<text x="668.75" y="201" fill="#143454" font-size="17" text-anchor="middle">46</text>
+<rect x="30" y="216" width="700" height="42" fill="#e6f2fc" stroke="#ccdfef"/>
+<text x="44" y="243" fill="#143454" font-size="17" text-anchor="start">Maritime</text>
+<text x="301.25" y="243" fill="#143454" font-size="17" text-anchor="middle">28</text>
+<text x="423.75" y="243" fill="#143454" font-size="17" text-anchor="middle">61</text>
+<text x="546.25" y="243" fill="#143454" font-size="17" text-anchor="middle">32</text>
+<text x="668.75" y="243" fill="#143454" font-size="17" text-anchor="middle">16</text>
+<rect x="30" y="258" width="700" height="42" fill="#f5f9fd" stroke="#ccdfef"/>
+<text x="44" y="285" fill="#143454" font-size="17" text-anchor="start">Art</text>
+<text x="301.25" y="285" fill="#143454" font-size="17" text-anchor="middle">48</text>
+<text x="423.75" y="285" fill="#143454" font-size="17" text-anchor="middle">53</text>
+<text x="546.25" y="285" fill="#143454" font-size="17" text-anchor="middle">55</text>
+<text x="668.75" y="285" fill="#143454" font-size="17" text-anchor="middle">37</text>
+<text x="30" y="323" fill="#143454" font-size="13" text-anchor="start">Band Buddy practice · Fictional data</text>
+</g></svg>

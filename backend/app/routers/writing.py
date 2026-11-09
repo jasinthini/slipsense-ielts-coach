@@ -26,7 +26,7 @@ router = APIRouter(
     response_model=list[WritingQuestionResponse],
 )
 def get_questions(
-category: Literal["discussion", "opinion", "letters", "bar", "line", "pie"],
+category: Literal["discussion", "opinion", "letters", "bar", "line", "pie", "map", "process", "table"],
     offset: int = Query(default=0, ge=0),
     limit: int = Query(default=20, ge=1, le=100),
     current_user: User = Depends(get_current_user),
