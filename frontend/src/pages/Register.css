@@ -407,3 +407,50 @@
     font-size: 25px;
   }
 }
+
+
+/* Match the Login layout while keeping Register's longer form compact. */
+.bl-page.bl-login-page.bl-register-page .bl-main {
+  padding-block: clamp(24px, 3vw, 44px);
+}
+
+.bl-page.bl-login-page.bl-register-page .bl-layout {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.bl-page.bl-login-page.bl-register-page .bl-form-section {
+  padding: clamp(24px, 3vw, 44px);
+}
+
+.bl-page.bl-login-page.bl-register-page .bl-form-section h1 {
+  font-size: clamp(30px, 3.2vw, 44px);
+}
+
+.bl-page.bl-register-page .bl-register-help {
+  display: block;
+  margin-top: 4px;
+  color: var(--bl-muted);
+  font-size: 13px;
+}
+
+.bl-page.bl-login-page.bl-register-page .bl-illustration {
+  width: min(100%, 460px);
+  max-width: none;
+  height: clamp(260px, 47vh, 420px);
+  max-height: none;
+  margin: 0 auto 16px;
+}
+
+@media (max-width: 760px) {
+  .bl-page.bl-login-page.bl-register-page .bl-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bl-page.bl-login-page.bl-register-page .bl-form-section {
+    padding: 26px 22px;
+  }
+
+  .bl-page.bl-login-page.bl-register-page .bl-illustration {
+    height: 230px;
+  }
+}

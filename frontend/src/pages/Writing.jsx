@@ -37,34 +37,35 @@ const categories = {
     visualLabel: 'Line graph',
   },
   pie: {
-  label: 'Academic · Task 1 · Pie chart',
-  task: 'Task 1 · Pie chart',
-  minutes: 20,
-  visualLabel: 'Pie chart',
-},
-map: {
-  label: 'Academic · Task 1 · Maps',
-  task: 'Task 1 · Maps',
-  minutes: 20,
-  visualLabel: 'Maps',
-},
-process: {
-  label: 'Academic · Task 1 · Process diagram',
-  task: 'Task 1 · Process diagram',
-  minutes: 20,
-  visualLabel: 'Process diagram',
-},
-table: {
-  label: 'Academic · Task 1 · Table',
-  task: 'Task 1 · Table',
-  minutes: 20,
-  visualLabel: 'Table',
-},
+    label: 'Academic · Task 1 · Pie chart',
+    task: 'Task 1 · Pie chart',
+    minutes: 20,
+    visualLabel: 'Pie chart',
+  },
+  map: {
+    label: 'Academic · Task 1 · Maps',
+    task: 'Task 1 · Maps',
+    minutes: 20,
+    visualLabel: 'Maps',
+  },
+  process: {
+    label: 'Academic · Task 1 · Process diagram',
+    task: 'Task 1 · Process diagram',
+    minutes: 20,
+    visualLabel: 'Process diagram',
+  },
+  table: {
+    label: 'Academic · Task 1 · Table',
+    task: 'Task 1 · Table',
+    minutes: 20,
+    visualLabel: 'Table',
+  },
 };
 
-function questionUrl(category, questionId) {
+function questionUrl(category, questionId, attemptId) {
   const params = new URLSearchParams({ category });
   if (questionId != null) params.set('question', String(questionId));
+  if (attemptId != null) params.set('attempt', String(attemptId));
   return `?${params.toString()}`;
 }
 
@@ -90,7 +91,6 @@ function WritingHeader({ onLeave }) {
       >
         <img src="/images/logo.png" alt="Band Buddy" />
       </Link>
-
       <Link
         className="wp-back"
         to="/writing"
@@ -116,7 +116,6 @@ function WritingQuestionCards({ category, questions, attempts, invalidQuestion }
   return (
     <div className="writing-page">
       <WritingHeader />
-
       <main className="wp-main">
         <div className="wp-heading">
           <div>
@@ -134,11 +133,14 @@ function WritingQuestionCards({ category, questions, attempts, invalidQuestion }
 
         <div className="wp-question-grid">
           {questions.map((question, index) => {
-            const hasDraft = attempts.some(
-              (attempt) =>
-                String(attempt.question_id) === String(question.id) &&
-                attempt.status === 'draft'
+            const questionAttempts = attempts.filter(
+              (attempt) => String(attempt.question_id) === String(question.id)
             );
+            const hasDraft = questionAttempts.some((attempt) => attempt.status === 'draft');
+            const latestFeedback = questionAttempts.find(
+              (attempt) => attempt.status === 'submitted' && attempt.feedback
+            );
+            const action = hasDraft ? 'Continue draft' : 'Start practice';
 
             return (
               <article className="wp-question-card" key={question.id}>
@@ -154,10 +156,19 @@ function WritingQuestionCards({ category, questions, attempts, invalidQuestion }
                 <Link
                   className="wp-card-start"
                   to={questionUrl(category, question.id)}
-                  aria-label={`${hasDraft ? 'Continue draft' : 'Start practice'}: ${question.title}`}
+                  aria-label={`${action}: ${question.title}`}
                 >
-                  {hasDraft ? 'Continue draft →' : 'Start practice →'}
+                  {action} →
                 </Link>
+
+                {latestFeedback && (
+                  <Link
+                    className="wp-text-button"
+                    to={questionUrl(category, question.id, latestFeedback.id)}
+                  >
+                    View latest feedback →
+                  </Link>
+                )}
               </article>
             );
           })}
@@ -187,11 +198,12 @@ export default function Writing() {
       key={category}
       category={category}
       questionId={params.get('question')}
+      reviewAttemptId={params.get('attempt')}
     />
   );
 }
 
-function WritingWorkspace({ category, questionId }) {
+function WritingWorkspace({ category, questionId, reviewAttemptId }) {
   const navigate = useNavigate();
   const [questions, setQuestions] = useState(null);
   const [attempts, setAttempts] = useState([]);
@@ -236,10 +248,7 @@ function WritingWorkspace({ category, questionId }) {
     }
 
     loadWorkspace();
-
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, [category, navigate, retry]);
 
   if (questions === null) {
@@ -249,7 +258,6 @@ function WritingWorkspace({ category, questionId }) {
         <p role={error ? 'alert' : 'status'}>
           {error || 'Loading your questions and saved drafts…'}
         </p>
-
         {error && (
           <button
             type="button"
@@ -259,7 +267,6 @@ function WritingWorkspace({ category, questionId }) {
             Try again
           </button>
         )}
-
         <Link to="/writing">← Writing categories</Link>
       </main>
     );
@@ -275,9 +282,7 @@ function WritingWorkspace({ category, questionId }) {
     );
   }
 
-  const index = questions.findIndex(
-    (question) => String(question.id) === questionId
-  );
+  const index = questions.findIndex((question) => String(question.id) === questionId);
 
   if (index === -1) {
     return (
@@ -291,6 +296,12 @@ function WritingWorkspace({ category, questionId }) {
   }
 
   const question = questions[index];
+  const reviewAttempt = attempts.find(
+    (attempt) =>
+      String(attempt.id) === reviewAttemptId &&
+      String(attempt.question_id) === String(question.id) &&
+      attempt.status === 'submitted'
+  );
   const savedDraft = attempts.find(
     (attempt) =>
       String(attempt.question_id) === String(question.id) &&
@@ -311,37 +322,30 @@ function WritingWorkspace({ category, questionId }) {
 
   return (
     <WritingEditor
-      key={question.id}
+      key={`${question.id}:${reviewAttemptId ?? 'practice'}`}
       category={category}
       question={question}
       number={index + 1}
       total={questions.length}
-      savedDraft={savedDraft}
+      savedAttempt={reviewAttempt || savedDraft}
       onSaved={rememberAttempt}
       onNext={openNextQuestion}
     />
   );
 }
 
-function WritingEditor({
-  category,
-  question,
-  number,
-  total,
-  savedDraft,
-  onSaved,
-  onNext,
-}) {
+function WritingEditor({ category, question, number, total, savedAttempt, onSaved, onNext }) {
   const navigate = useNavigate();
-  const [answer, setAnswer] = useState(savedDraft?.answer || '');
-  const [seconds, setSeconds] = useState(savedDraft?.elapsed_seconds || 0);
-  const [attemptId, setAttemptId] = useState(savedDraft?.id || null);
+  const [answer, setAnswer] = useState(savedAttempt?.answer || '');
+  const [seconds, setSeconds] = useState(savedAttempt?.elapsed_seconds || 0);
+  const [attemptId, setAttemptId] = useState(savedAttempt?.id ?? null);
   const [running, setRunning] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(savedAttempt?.status === 'submitted');
+  const [feedback, setFeedback] = useState(savedAttempt?.feedback ?? null);
   const [dirty, setDirty] = useState(false);
   const [message, setMessage] = useState(
-    savedDraft ? 'Your saved draft has been restored.' : ''
+    savedAttempt?.status === 'draft' ? 'Your saved draft has been restored.' : ''
   );
   const [error, setError] = useState('');
 
@@ -351,9 +355,7 @@ function WritingEditor({
 
   useEffect(() => {
     mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
+    return () => { mounted.current = false; };
   }, []);
 
   useEffect(() => {
@@ -384,9 +386,7 @@ function WritingEditor({
     Math.floor(seconds / 3600),
     Math.floor((seconds % 3600) / 60),
     seconds % 60,
-  ]
-    .map((value) => String(value).padStart(2, '0'))
-    .join(':');
+  ].map((value) => String(value).padStart(2, '0')).join(':');
 
   async function persist(status = 'draft') {
     if (saveLock.current) return false;
@@ -410,7 +410,6 @@ function WritingEditor({
         elapsedSeconds: seconds,
         status,
       };
-
       const saved = attemptId
         ? await updateWritingAttempt(attemptId, payload)
         : await createWritingAttempt(payload);
@@ -424,7 +423,12 @@ function WritingEditor({
 
       if (status === 'submitted') {
         setSubmitted(true);
-        setMessage('Answer submitted and saved. AI feedback is not available yet.');
+        setFeedback(saved.feedback ?? null);
+        setMessage(
+          saved.feedback
+            ? 'Answer submitted and saved.'
+            : 'Answer submitted and saved. AI feedback was not returned for this attempt.'
+        );
       } else {
         setMessage('Draft saved to your account.');
       }
@@ -445,7 +449,6 @@ function WritingEditor({
             : 'Could not save your answer. Your text is still here. Please try again.'
         );
       }
-
       return false;
     } finally {
       saveLock.current = false;
@@ -456,25 +459,19 @@ function WritingEditor({
   function leavePage(event, destination) {
     event.preventDefault();
     if (saveLock.current) return;
-
     if (
       dirtyRef.current &&
       !window.confirm('You have unsaved changes. Leave without saving them?')
-    ) {
-      return;
-    }
-
+    ) return;
     navigate(destination);
   }
 
   async function handleNext() {
     if (number >= total || saveLock.current) return;
-
     if (!submitted && dirtyRef.current) {
       const saved = await persist('draft');
       if (!saved) return;
     }
-
     setRunning(false);
     onNext();
   }
@@ -483,6 +480,7 @@ function WritingEditor({
     setAnswer('');
     setSeconds(0);
     setAttemptId(null);
+    setFeedback(null);
     setSubmitted(false);
     setRunning(false);
     setDirty(false);
@@ -493,6 +491,15 @@ function WritingEditor({
 
   const questionListUrl = questionUrl(category);
   const { label, visualLabel = 'Question visual' } = categories[category];
+  const draftStatus = saving
+    ? 'Saving your answer…'
+    : submitted
+      ? 'Submitted answer saved.'
+      : dirty
+        ? 'Unsaved changes.'
+        : attemptId
+          ? 'Draft saved to your account.'
+          : 'Click Save draft to save to your account.';
 
   return (
     <div className="writing-page">
@@ -505,10 +512,7 @@ function WritingEditor({
             <h1>Your writing workspace.</h1>
             <p>{label}</p>
           </div>
-
-          <span className="wp-mode">
-            {submitted ? 'Submitted' : 'Practice mode'}
-          </span>
+          <span className="wp-mode">{submitted ? 'Submitted' : 'Practice mode'}</span>
         </div>
 
         <section className="wp-toolbar" aria-label="Practice controls">
@@ -519,7 +523,6 @@ function WritingEditor({
           >
             ← All questions
           </Link>
-
           <Link
             className="wp-text-button"
             to="/writing/history"
@@ -527,7 +530,6 @@ function WritingEditor({
           >
             My writing history →
           </Link>
-
           <div className="wp-timer">
             <span aria-label="Elapsed practice time">{clock}</span>
             <button
@@ -609,14 +611,12 @@ function WritingEditor({
                     : 'Save your draft before leaving this page.'}
                 </p>
               </div>
-
               <span className="wp-word-count">{wordCount} words</span>
             </div>
 
             <label className="wp-sr-only" htmlFor="writing-answer">
               Write your answer
             </label>
-
             <textarea
               id="writing-answer"
               value={answer}
@@ -636,18 +636,7 @@ function WritingEditor({
             />
 
             <div className="wp-editor-footer">
-              <p id="draft-status" role="status">
-                {saving
-                  ? 'Saving your answer…'
-                  : submitted
-                    ? 'Submitted answer saved.'
-                    : dirty
-                      ? 'Unsaved changes.'
-                      : attemptId
-                        ? 'Draft saved to your account.'
-                        : 'Click Save draft to save to your account.'}
-              </p>
-
+              <p id="draft-status" role="status">{draftStatus}</p>
               <button
                 type="button"
                 className="wp-text-button"
@@ -666,7 +655,6 @@ function WritingEditor({
               ? 'Next question saves any unsaved draft before moving on.'
               : 'You have reached the last available question in this category.'}
           </p>
-
           <div className="wp-actions">
             {submitted ? (
               <button type="button" className="wp-secondary" onClick={startNewAttempt}>
@@ -682,7 +670,6 @@ function WritingEditor({
                 {saving ? 'Saving…' : 'Submit answer'}
               </button>
             )}
-
             <button
               type="button"
               className="wp-primary"
@@ -696,9 +683,102 @@ function WritingEditor({
 
         {error && <p className="wp-notice" role="alert">{error}</p>}
         {message && <p className="wp-notice" role="status">{message}</p>}
+        {submitted && feedback && <WritingFeedbackPanel feedback={feedback} />}
 
         <WritingFooter />
       </main>
     </div>
+  );
+}
+
+function WritingFeedbackPanel({ feedback }) {
+  const textSections = [
+    ['Summary', feedback.summary],
+    ['Task feedback', feedback.task_feedback],
+    ['Organisation', feedback.structure_feedback],
+  ];
+
+  const listSections = [
+    ['Strengths', feedback.strengths],
+    ['What to improve', feedback.improvements],
+  ];
+
+  const grammar = Array.isArray(feedback.grammar_corrections)
+    ? feedback.grammar_corrections : [];
+  const vocabulary = Array.isArray(feedback.vocabulary_suggestions)
+    ? feedback.vocabulary_suggestions : [];
+
+  return (
+    <section
+      aria-labelledby="wp-feedback-title"
+      style={{
+        marginBlock: '24px',
+        padding: 'clamp(16px, 3vw, 28px)',
+        background: '#fff',
+        color: '#102f4a',
+        border: '1px solid #c8ddf0',
+        borderRadius: '16px',
+        overflowWrap: 'anywhere',
+      }}
+    >
+      <h2 id="wp-feedback-title">AI writing feedback</h2>
+      <p>Practice guidance for your submitted answer.</p>
+
+      {textSections.map(([title, text]) => text && (
+        <div key={title}>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </div>
+      ))}
+
+      {listSections.map(([title, items]) => Array.isArray(items) && items.length > 0 && (
+        <div key={title}>
+          <h3>{title}</h3>
+          <ul>
+            {items.map((item, index) => <li key={index}>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+
+      {grammar.length > 0 && (
+        <div>
+          <h3>Grammar corrections</h3>
+          <ol>
+            {grammar.map((item, index) => (
+              <li key={index}>
+                <p><strong>Original:</strong> {item.original}</p>
+                <p><strong>Corrected:</strong> {item.corrected}</p>
+                {item.explanation && <p>{item.explanation}</p>}
+                {item.tamil_explanation && <p lang="ta">{item.tamil_explanation}</p>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {vocabulary.length > 0 && (
+        <div>
+          <h3>Vocabulary suggestions</h3>
+          <ol>
+            {vocabulary.map((item, index) => (
+              <li key={index}>
+                <p><strong>Original:</strong> {item.original}</p>
+                <p><strong>Suggested wording:</strong> {item.suggestion}</p>
+                {item.meaning && <p><strong>Meaning:</strong> {item.meaning}</p>}
+                {item.example_sentence && <p><strong>Example:</strong> {item.example_sentence}</p>}
+                {item.tamil_explanation && <p lang="ta">{item.tamil_explanation}</p>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {feedback.tamil_summary && (
+        <div lang="ta">
+          <h3>தமிழில் சுருக்கம்</h3>
+          <p>{feedback.tamil_summary}</p>
+        </div>
+      )}
+    </section>
   );
 }

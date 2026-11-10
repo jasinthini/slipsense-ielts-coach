@@ -413,3 +413,152 @@
     grid-row: 1;
   }
 }
+
+
+/* Band Buddy login redesign */
+.bl-page.bl-login-page {
+  --bl-navy: #0b2345;
+  --bl-muted: #405976;
+  --bl-border: #a3b7cb;
+}
+
+.bl-login-page .bl-main {
+  padding: clamp(24px, 4vw, 64px) clamp(16px, 5vw, 72px);
+  background:
+    radial-gradient(ellipse at 88% 5%, #c7e4fc, transparent 65%),
+    linear-gradient(145deg, #f8fbff 10%, #e1effc 100%);
+}
+
+.bl-login-page .bl-layout {
+  width: min(1180px, 100%);
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid #a9c8e8;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(11, 35, 69, 0.09);
+}
+
+.bl-login-page .bl-form-section {
+  padding: clamp(26px, 3.5vw, 56px);
+  background: #fff;
+}
+
+.bl-login-page .bl-field input {
+  background: #fff;
+  box-shadow: none;
+  min-height: 48px;
+}
+
+/* Keep the fields white when Chrome or Edge fills saved credentials. */
+.bl-login-page .bl-field input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  -webkit-text-fill-color: var(--bl-navy);
+  caret-color: var(--bl-navy);
+}
+
+.bl-login-page .bl-password {
+  overflow: hidden;
+}
+
+.bl-login-page .bl-password input {
+  border-radius: 0;
+}
+
+.bl-login-page .bl-submit {
+  min-height: 48px;
+  border-color: var(--bl-navy);
+  background: var(--bl-navy);
+  color: #fff;
+}
+
+.bl-login-page .bl-submit:hover:not(:disabled) {
+  background: #173d69;
+}
+
+.bl-login-page .bl-art-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vw, 56px);
+  background:
+    radial-gradient(
+      ellipse at 53% 55%,
+      #bbdcf8 0%,
+      #c8e3fa 57%,
+      transparent 57.5%
+    ),
+    linear-gradient(145deg, #e0effc, #cfe8fc);
+}
+
+.bl-login-page .bl-illustration {
+  width: min(100%, 460px);
+  max-width: none;
+  height: clamp(280px, 47vh, 420px);
+  margin: 0 auto 16px;
+}
+
+.bl-login-page .bl-art-section figcaption {
+  font-size: clamp(21px, 2.5vw, 34px);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+@media (max-width: 760px) {
+  .bl-login-page .bl-layout {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 480px;
+  }
+
+  .bl-login-page .bl-form-section {
+    padding: 26px 22px;
+  }
+
+  .bl-login-page .bl-illustration {
+    height: 230px;
+  }
+}
+
+/* Login button: light blue with navy text */
+.bl-login-page .bl-submit {
+  border-color: #9dc4e5;
+  background: linear-gradient(105deg, #e4f2ff, #b4daf8);
+  color: #0b2345;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.bl-login-page .bl-submit:hover:not(:disabled) {
+  border-color: #78abd6;
+  background: linear-gradient(105deg, #d6ebfc, #a1cef2);
+}
+
+/* Replace the circle with a soft background */
+.bl-login-page .bl-art-section {
+  background: linear-gradient(145deg, #edf7ff 0%, #d3eafb 100%);
+}
+
+/* Play once when the login page opens */
+@media (prefers-reduced-motion: no-preference) {
+  .bl-login-page .bl-illustration {
+    animation: bl-login-rise 650ms ease-out both;
+  }
+
+  .bl-login-page .bl-art-section figcaption {
+    animation: bl-login-rise 500ms ease-out 120ms both;
+  }
+}
+
+@keyframes bl-login-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

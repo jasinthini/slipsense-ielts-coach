@@ -197,7 +197,7 @@ export default function WritingCategories() {
     <div className="wc-page">
       <header className="wc-header">
         <Link to="/dashboard" aria-label="Band Buddy dashboard">
-          <img src="/images/logo.png" alt="Band Buddy" />
+          <img className="wc-navy-logo" src="/images/logo.png" alt="Band Buddy" />
         </Link>
         <Link to="/dashboard">← Back to dashboard</Link>
       </header>

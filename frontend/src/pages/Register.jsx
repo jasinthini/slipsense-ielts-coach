@@ -3,42 +3,6 @@ import { Link } from 'react-router-dom';
 import api from '../services/api';
 import './Login.css';
 
-const registerStyles = `
-  .bl-page.bl-register-page .bl-layout {
-    grid-template-columns: minmax(0, 460px) minmax(0, 420px);
-  }
-
-  .bl-page.bl-register-page .bl-main {
-    padding-top: 28px;
-    padding-bottom: 72px;
-  }
-
-  .bl-page.bl-register-page .bl-field {
-    margin-bottom: 10px;
-  }
-
-  .bl-page.bl-register-page .bl-intro {
-    margin-bottom: 16px;
-  }
-
-  .bl-page.bl-register-page .bl-register-help {
-    display: block;
-    margin-top: 4px;
-    color: var(--bl-muted);
-    font-size: 13px;
-  }
-
-  @media (max-width: 760px) {
-    .bl-page.bl-register-page .bl-layout {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .bl-page.bl-register-page .bl-form-section {
-      grid-row: 1;
-    }
-  }
-`;
-
 function GoogleIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
@@ -82,7 +46,6 @@ function PasswordField({ id, name, label, placeholder, disabled, help }) {
           disabled={disabled}
           required
         />
-
         <button
           type="button"
           aria-label={`${visible ? 'Hide' : 'Show'} ${label.toLowerCase()}`}
@@ -156,7 +119,9 @@ export default function Register() {
       } else if (Array.isArray(detail)) {
         setMessage('Please check your name, email and password.');
       } else if (!error.response) {
-        setMessage('Could not confirm registration. Check your connection. If the email is already registered, try logging in.');
+        setMessage(
+          'Could not confirm registration. Check your connection. If the email is already registered, try logging in.'
+        );
       } else {
         setMessage('Unable to create your account. Please try again later.');
       }
@@ -167,27 +132,19 @@ export default function Register() {
   }
 
   return (
-    <div className="bl-page bl-register-page">
-      <style>{registerStyles}</style>
-
+    <div className="bl-page bl-login-page bl-register-page">
       <header className="bl-header">
         <Link to="/" aria-label="Band Buddy home">
           <img className="bl-logo" src="/images/logo.png" alt="Band Buddy" />
         </Link>
 
-        <Link className="bl-back" to="/">← Back to home</Link>
+        <Link className="bl-back" to="/">
+          ← Back to home
+        </Link>
       </header>
 
       <main className="bl-main">
         <div className="bl-layout">
-          <figure className="bl-art-section">
-            <img
-              className="bl-illustration"
-              src="/images/register-study.png"
-              alt="IELTS study illustration"
-            />
-          </figure>
-
           <section className="bl-form-section" aria-labelledby="register-heading">
             <h1 id="register-heading">Make room for progress.</h1>
             <p className="bl-intro">Create your Band Buddy account.</p>
@@ -245,37 +202,44 @@ export default function Register() {
               </button>
             </form>
 
-            <div className="bl-divider"><span>or</span></div>
+            <div className="bl-divider">
+              <span>or</span>
+            </div>
 
             <button
               className="bl-google"
               type="button"
               disabled={isSubmitting}
               onClick={() =>
-                setMessage('Google sign-in is not available yet. Please register using your email.')
+                setMessage(
+                  'Google sign-in is not available yet. Please register using your email.'
+                )
               }
             >
               <GoogleIcon />
               Continue with Google
             </button>
 
-            {message && <p className="bl-message" role="status">{message}</p>}
+            {message && (
+              <p className="bl-message" role="status">
+                {message}
+              </p>
+            )}
 
             <p className="bl-register">
               Already have an account? <Link to="/login">Log in</Link>
             </p>
           </section>
-        </div>
 
-        <svg
-          className="bl-wave"
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path fill="#DFEEFA" d="M0 32C250 8 355 92 610 75S1080 10 1440 42V100H0Z" />
-          <path fill="#C9E5FA" d="M0 70C240 35 400 106 675 91S1170 47 1440 62V100H0Z" />
-        </svg>
+          <figure className="bl-art-section">
+            <img
+              className="bl-illustration"
+              src="/images/register-study.png"
+              alt="IELTS study illustration"
+            />
+            <figcaption>Small steps. Meaningful progress.</figcaption>
+          </figure>
+        </div>
       </main>
     </div>
   );

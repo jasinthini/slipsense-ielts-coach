@@ -283,3 +283,26 @@
     transform: none;
   }
 }
+
+
+img.wc-navy-logo {
+  background: transparent;
+  filter: grayscale(1) contrast(1.35) invert(1);
+  mix-blend-mode: screen;
+}
+
+
+header.wc-speaking-header {
+  background: #e4f0fc;
+  border-bottom: 1px solid #cbddef;
+}
+
+header.wc-speaking-header a {
+  color: #1458a6;
+}
+
+header.wc-speaking-header img.wc-navy-logo {
+  background: transparent;
+  filter: brightness(1.03);
+  mix-blend-mode: multiply;
+}

@@ -620,7 +620,7 @@ export default function Dashboard() {
                     </p>
                   )}
                   <p className="db-help">Open writing history to select and continue your saved answer.</p>
-                  <img className="db-saved-drawing" src="/images/home-study.png" alt="" loading="lazy" />
+                  <img className="db-saved-drawing" src="/images/saved-writing.png" alt="" loading="lazy" />
                 </section>
 
                 <section className="db-panel db-tip">

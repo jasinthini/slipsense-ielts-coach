@@ -76,13 +76,15 @@ export default function Login() {
   }
 
   return (
-    <div className="bl-page">
+    <div className="bl-page bl-login-page">
       <header className="bl-header">
         <Link to="/" aria-label="Band Buddy home">
           <img className="bl-logo" src="/images/logo.png" alt="Band Buddy" />
         </Link>
 
-        <Link className="bl-back" to="/">← Back to home</Link>
+        <Link className="bl-back" to="/">
+          ← Back to home
+        </Link>
       </header>
 
       <main className="bl-main">
@@ -145,21 +147,29 @@ export default function Login() {
               </button>
             </form>
 
-            <div className="bl-divider"><span>or</span></div>
+            <div className="bl-divider">
+              <span>or</span>
+            </div>
 
             <button
               className="bl-google"
               type="button"
               disabled={isSubmitting}
               onClick={() =>
-                setMessage('Google sign-in is not available yet. Please use your email and Band Buddy password.')
+                setMessage(
+                  'Google sign-in is not available yet. Please use your email and Band Buddy password.'
+                )
               }
             >
               <GoogleIcon />
               Continue with Google
             </button>
 
-            {message && <p className="bl-message" role="status">{message}</p>}
+            {message && (
+              <p className="bl-message" role="status">
+                {message}
+              </p>
+            )}
 
             <p className="bl-register">
               New to Band Buddy? <Link to="/register">Create an account</Link>
@@ -169,22 +179,12 @@ export default function Login() {
           <figure className="bl-art-section">
             <img
               className="bl-illustration"
-              src="/images/login-student.png"
-              alt="Student in a light blue cardigan holding a laptop"
+              src="/images/login-student-navy.png"
+              alt="Student in a navy blue cardigan holding a laptop"
             />
             <figcaption>Your next step starts here.</figcaption>
           </figure>
         </div>
-
-        <svg
-          className="bl-wave"
-          viewBox="0 0 1440 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path fill="#DFEEFA" d="M0 32C250 8 355 92 610 75S1080 10 1440 42V100H0Z" />
-          <path fill="#C9E5FA" d="M0 70C240 35 400 106 675 91S1170 47 1440 62V100H0Z" />
-        </svg>
       </main>
     </div>
   );
